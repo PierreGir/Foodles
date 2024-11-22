@@ -14,6 +14,8 @@ def get_words_frequency(sentence: str, n: int):
         raise ValueError("Sentence is empty.")
     if n < 0:
         raise ValueError("n must be a positive integer.")
+    if n == 0:
+        return []
     
     # Get words frequency
     words = get_only_letters_and_spaces(sentence).split()
