@@ -1,0 +1,124 @@
+[
+    {
+        "model": "inventory.product",
+        "pk": 1,
+        "fields": {
+            "name": "Coca Cola"
+        }
+    },
+    {
+        "model": "inventory.product",
+        "pk": 2,
+        "fields": {
+            "name": "Orange Juice"
+        }
+    },
+    {
+        "model": "inventory.product",
+        "pk": 3,
+        "fields": {
+            "name": "Apple Juice"
+        }
+    },
+    {
+        "model": "inventory.product",
+        "pk": 4,
+        "fields": {
+            "name": "Water"
+        }
+    },
+    {
+        "model": "inventory.product",
+        "pk": 5,
+        "fields": {
+            "name": "Lemonade"
+        }
+    },
+    {
+        "model": "inventory.location",
+        "pk": 1,
+        "fields": {
+            "name": "A1"
+        }
+    },
+    {
+        "model": "inventory.location",
+        "pk": 2,
+        "fields": {
+            "name": "A2"
+        }
+    },
+    {
+        "model": "inventory.location",
+        "pk": 3,
+        "fields": {
+            "name": "B1"
+        }
+    },
+    {
+        "model": "inventory.location",
+        "pk": 4,
+        "fields": {
+            "name": "B2"
+        }
+    },
+    {
+        "model": "inventory.location",
+        "pk": 5,
+        "fields": {
+            "name": "C1"
+        }
+    },
+    {
+        "model": "inventory.location",
+        "pk": 6,
+        "fields": {
+            "name": "C2"
+        }
+    },
+    {
+        "model": "inventory.stock",
+        "pk": 1,
+        "fields": {
+            "product": 1,
+            "location": 1,
+            "quantity": 500
+        }
+    },
+    {
+        "model": "inventory.stock",
+        "pk": 2,
+        "fields": {
+            "product": 2,
+            "location": 2,
+            "quantity": 300
+        }
+    },
+    {
+        "model": "inventory.stock",
+        "pk": 3,
+        "fields": {
+            "product": 3,
+            "location": 3,
+            "quantity": 250
+        }
+    },
+    {
+        "model": "inventory.stock",
+        "pk": 4,
+        "fields": {
+            "product": 4,
+            "location": 4,
+            "quantity": 700
+        }
+    },
+    {
+        "model": "inventory.stock",
+        "pk": 5,
+        "fields": {
+            "product": 5,
+            "location": 5,
+            "quantity": 450
+        }
+    }
+]
