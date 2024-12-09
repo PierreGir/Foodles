@@ -28,15 +28,16 @@ class MoveStockSerializer(serializers.Serializer):
                 "Insufficient stock at the source location."
             )
 
-        existing_stock_at_to_location = Stock.objects.filter(
-            location=to_location
-        ).first()
-        if (
-            existing_stock_at_to_location
-            and existing_stock_at_to_location.product != product
-        ):
-            raise serializers.ValidationError(
-                "The destination location already contains a different product."
-            )
+        if to_location.name != "website":
+            existing_stock_at_to_location = Stock.objects.filter(
+                location=to_location
+            ).first()
+            if (
+                existing_stock_at_to_location
+                and existing_stock_at_to_location.product != product
+            ):
+                raise serializers.ValidationError(
+                    "The destination location already contains a different product."
+                )
 
         return data

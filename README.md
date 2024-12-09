@@ -13,6 +13,7 @@ Run the following command to apply migrations and set up the database:
 ```
 python manage.py migrate
 python manage.py loaddata inventory/fixtures/initial_data.json
+python manage.py loaddata orders/fixtures/initial_data.json
 ```
 
 3. Run the server

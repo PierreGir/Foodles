@@ -3,42 +3,47 @@
         "model": "inventory.product",
         "pk": 1,
         "fields": {
-            "name": "Coca Cola"
+            "name": "Coca Cola",
+            "price": 1.50
         }
     },
     {
         "model": "inventory.product",
         "pk": 2,
         "fields": {
-            "name": "Orange Juice"
+            "name": "Orange Juice",
+            "price": 2.00
         }
     },
     {
         "model": "inventory.product",
         "pk": 3,
         "fields": {
-            "name": "Apple Juice"
+            "name": "Apple Juice",
+            "price": 1.80
         }
     },
     {
         "model": "inventory.product",
         "pk": 4,
         "fields": {
-            "name": "Water"
+            "name": "Water",
+            "price": 0.80
         }
     },
     {
         "model": "inventory.product",
         "pk": 5,
         "fields": {
-            "name": "Lemonade"
+            "name": "Lemonade",
+            "price": 1.20
         }
     },
     {
         "model": "inventory.location",
         "pk": 1,
         "fields": {
-            "name": "A1"
+            "name": "website"
         }
     },
     {

@@ -8,11 +8,13 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = []
+    dependencies = [
+        ("inventory", "0001_initial"),
+    ]
 
     operations = [
         migrations.CreateModel(
-            name="Location",
+            name="Cart",
             fields=[
                 (
                     "id",
@@ -23,11 +25,12 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("name", models.CharField(max_length=100, unique=True)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
             ],
         ),
         migrations.CreateModel(
-            name="Product",
+            name="Customer",
             fields=[
                 (
                     "id",
@@ -38,12 +41,12 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("name", models.CharField(max_length=100, unique=True)),
-                ("price", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("name", models.CharField(max_length=255)),
+                ("email", models.EmailField(max_length=254, unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name="MoveHistory",
+            name="CartItem",
             fields=[
                 (
                     "id",
@@ -55,21 +58,12 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("quantity", models.PositiveIntegerField()),
-                ("timestamp", models.DateTimeField(auto_now_add=True)),
                 (
-                    "from_location",
+                    "cart",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name="from_location",
-                        to="inventory.location",
-                    ),
-                ),
-                (
-                    "to_location",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        related_name="to_location",
-                        to="inventory.location",
+                        related_name="items",
+                        to="orders.cart",
                     ),
                 ),
                 (
@@ -81,8 +75,17 @@ class Migration(migrations.Migration):
                 ),
             ],
         ),
+        migrations.AddField(
+            model_name="cart",
+            name="customer",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="carts",
+                to="orders.customer",
+            ),
+        ),
         migrations.CreateModel(
-            name="Stock",
+            name="Order",
             fields=[
                 (
                     "id",
@@ -93,12 +96,39 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("quantity", models.PositiveIntegerField(default=0)),
+                ("total_amount", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("paid", models.BooleanField(default=False)),
                 (
-                    "location",
+                    "customer",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        to="inventory.location",
+                        related_name="orders",
+                        to="orders.customer",
+                    ),
+                ),
+            ],
+        ),
+        migrations.CreateModel(
+            name="OrderItem",
+            fields=[
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("quantity", models.PositiveIntegerField()),
+                ("price", models.DecimalField(decimal_places=2, max_digits=10)),
+                (
+                    "order",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="items",
+                        to="orders.order",
                     ),
                 ),
                 (
@@ -109,8 +139,5 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={
-                "unique_together": {("product", "location")},
-            },
         ),
     ]
