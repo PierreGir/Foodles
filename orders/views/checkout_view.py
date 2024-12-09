@@ -1,10 +1,9 @@
-from django.db import transaction
-from django.shortcuts import get_object_or_404
-from rest_framework import status
-from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from rest_framework.response import Response
+from rest_framework import status
+from django.shortcuts import get_object_or_404
 from orders.models import Cart, CartItem, Order, OrderItem
+from django.db import transaction
 from orders.services.payment_service import PaymentService
 
 
@@ -37,11 +36,11 @@ class CheckoutView(APIView):
 
                 # Create order
                 order = Order.objects.create(
-                    customer=cart.customer, total_price=total_price, status="completed"
+                    customer=cart.customer, total_amount=total_price
                 )
                 for item in cart_items:
                     OrderItem.objects.create(
-                        order=order, product=item.product, quantity=item.quantity
+                        order=order, product=item.product, quantity=item.quantity, price=item.product.price
                     )
 
                 # Clear the cart

@@ -9,9 +9,10 @@ class PaymentService:
         Call payment API
         """
         try:
+            # return {"success": True}
             response = requests.post(
                 "https://external-provider.com/api/refund/",
-                json={"amount": amount, "client_id": customer_id},
+                json={"amount": float(amount), "client_id": customer_id},
                 timeout=5,
             )
             response.raise_for_status()
